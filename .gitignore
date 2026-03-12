@@ -1,0 +1,16 @@
+# Pasta interna do Cowork (não deve ir ao repositório)
+.claude/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores de código
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
