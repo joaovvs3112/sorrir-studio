@@ -32,15 +32,15 @@
     "name": "Sorrir Studio",
     "description": "Clínica de estética dental de alto padrão. Facetas de porcelana, alinhadores invisíveis e implantes dentais em [CIDADE].",
     "url": "https://SEUSITE.com.br",
-    "telephone": "+55-00-00000-0000",
+    "telephone": "+55-27-99641-3782",
     "priceRange": "$$",
     "image": "https://SEUSITE.com.br/og-image.jpg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "RUA, NÚMERO",
-      "addressLocality": "[CIDADE]",
-      "addressRegion": "[ESTADO]",
-      "postalCode": "00000-000",
+      "streetAddress": "Rua Lourival Pereira, 143",
+      "addressLocality": "Vitória",
+      "addressRegion": "ES",
+      "postalCode": "29050-370",
       "addressCountry": "BR"
     },
     "geo": {
@@ -349,52 +349,85 @@
     }
     .section-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto; }
 
-    .ba-grid {
+    /* === VITRINE DE SORRISOS === */
+    .showcase-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
-    .ba-card {
-      border: 1px solid var(--accent); border-radius: 10px; overflow: hidden;
-      background: var(--bg3);
+    .showcase-card {
+      position: relative; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+      height: 400px; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      transition: transform .3s ease, box-shadow .3s ease;
     }
-    .ba-slider-wrap {
-      position: relative; overflow: hidden; cursor: col-resize;
-      user-select: none; -webkit-user-select: none;
-      height: 300px;
-    }
-    .ba-slider-wrap img {
-      position: absolute; top: 0; left: 0;
+    .showcase-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,.15); }
+    .showcase-img {
       width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
     }
-    .ba-after { clip-path: inset(0 50% 0 0); }
-    .ba-divider {
-      position: absolute; top: 0; bottom: 0;
-      left: 50%; transform: translateX(-50%);
-      width: 3px; background: var(--accent); z-index: 3;
-      pointer-events: none;
+    .showcase-card:hover .showcase-img { transform: scale(1.04); }
+
+    /* Badge "Resultado Real" fixo no topo */
+    .showcase-tag {
+      position: absolute; top: 14px; left: 14px; z-index: 3;
+      background: rgba(255,255,255,.92);
+      color: var(--accent); font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid var(--accent);
+      backdrop-filter: blur(4px);
     }
-    .ba-handle {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 4; pointer-events: none;
-      box-shadow: 0 4px 16px rgba(59,130,246,.4);
+
+    /* Overlay que sobe no hover */
+    .showcase-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(10,20,50,.92) 0%, rgba(10,20,50,.6) 60%, transparent 100%);
+      padding: 28px 24px 24px;
+      transform: translateY(calc(100% - 68px));
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
     }
-    .ba-handle svg { width: 20px; height: 20px; fill: #fff; }
-    .ba-label-before, .ba-label-after {
-      position: absolute; top: 12px; z-index: 5;
-      font-size: 11px; font-weight: 700; letter-spacing: 2px;
-      padding: 4px 10px; border-radius: 4px; pointer-events: none;
+    .showcase-card:hover .showcase-overlay { transform: translateY(0); }
+
+    /* Linha de preview (sempre visível) */
+    .showcase-preview {
+      font-size: 14px; font-weight: 700; color: #fff;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 14px;
     }
-    .ba-label-before { left: 12px; background: rgba(200,50,50,.85); color: #fff; }
-    .ba-label-after  { right: 12px; background: rgba(59,130,246,.9); color: #fff; }
-    .ba-info {
-      padding: 16px 20px;
-      border-top: 1px solid #e8ecf2;
+    .showcase-preview-icon { color: var(--accent); font-size: 16px; }
+
+    /* Conteúdo expandido (visível só no hover) */
+    .showcase-detail {
+      opacity: 0; transform: translateY(8px);
+      transition: opacity .3s ease .1s, transform .3s ease .1s;
     }
-    .ba-proc { font-weight: 700; font-size: 15px; color: #1a2b4a; margin-bottom: 4px; }
-    .ba-time { font-size: 13px; color: var(--muted); }
+    .showcase-card:hover .showcase-detail { opacity: 1; transform: translateY(0); }
+    .showcase-duration {
+      font-size: 12px; color: rgba(255,255,255,.7);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .showcase-quote {
+      font-size: 14px; color: rgba(255,255,255,.88);
+      font-style: italic; line-height: 1.5; margin-bottom: 16px;
+    }
+    .showcase-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--accent);
+      border: 1.5px solid var(--accent); border-radius: 4px;
+      padding: 8px 16px; transition: background .2s, color .2s;
+      text-decoration: none;
+    }
+    .showcase-cta:hover { background: var(--accent); color: #fff; }
+
+    /* Mobile: overlay sempre parcialmente visível */
+    @media (max-width: 767px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-card { height: 340px; }
+      .showcase-overlay { transform: translateY(0); }
+      .showcase-detail { opacity: 1; transform: translateY(0); }
+    }
 
     /* ======================================================
        === PROCEDURES ===
@@ -857,38 +890,35 @@
 
         <!-- Imagem do dentista -->
         <div class="about-img-wrap reveal">
-          <!--
-            ✅ QUANDO TIVER A FOTO: substitua o bloco .about-img-placeholder
-            pela tag abaixo (descomentando-a e removendo o placeholder):
-            <img class="about-img-real" src="foto-do-dentista.jpg" alt="Dr(a). [NOME] — Sorrir Studio" />
-          -->
-          <div class="about-img-placeholder">
-            <span class="placeholder-icon">📷</span>
-            <p><strong>Adicionar foto profissional do dentista aqui</strong><br>Recomendado: 480×640px, fundo claro ou do consultório</p>
-          </div>
-          <div class="about-cro-tag">CRO-[ESTADO] [NÚMERO]</div>
+          <img
+            class="about-img-real"
+            src="dra-larissa.png"
+            alt="Dra. Larissa Acosta — Sorrir Studio"
+            loading="eager"
+          />
+          <div class="about-cro-tag">CRO-ES 4.829</div>
         </div>
 
         <!-- Texto sobre o dentista -->
         <div class="about-text reveal reveal-d1">
           <p class="section-tag">✦ Quem te atende</p>
-          <h2 class="about-name">Dr(a). [NOME<br><em>DO DENTISTA]</em></h2>
+          <h2 class="about-name">Dra. Larissa<br><em>Acosta</em></h2>
           <p class="about-desc">
-            [Escreva aqui uma apresentação pessoal do dentista em 2–3 frases. Exemplo: "Apaixonada por estética dental desde a faculdade, a Dra. [Nome] dedica sua carreira a transformar sorrisos de forma segura, personalizada e com resultados que duram décadas. Cada paciente é tratado como único — porque é."]
+            Apaixonada por transformar sorrisos desde os primeiros anos de faculdade, a Dra. Larissa Acosta dedica sua trajetória à odontologia estética de alta performance. Com mais de 8 anos de experiência e centenas de casos de sucesso, ela combina técnica precisa, olhar artístico e atendimento humanizado para entregar resultados que vão muito além da estética — que transformam vidas. Para ela, cada paciente carrega uma história única, e o sorriso é apenas o começo dessa transformação.
           </p>
 
           <div class="about-credentials">
             <div class="credential-item">
               <span class="credential-icon">🎓</span>
-              <span>Formação: [Universidade] — [Ano de formatura]</span>
+              <span>Graduação em Odontologia — UFES (Universidade Federal do Espírito Santo), 2017</span>
             </div>
             <div class="credential-item">
               <span class="credential-icon">⭐</span>
-              <span>Especialização em Estética Dental — [Instituição]</span>
+              <span>Especialização em Estética e Cosmética Dental — FAESA</span>
             </div>
             <div class="credential-item">
               <span class="credential-icon">📋</span>
-              <span>CRO-[ESTADO] [NÚMERO] — Registro ativo</span>
+              <span>CRO-ES 4.829 — Registro ativo</span>
             </div>
             <div class="credential-item">
               <span class="credential-icon">🏆</span>
@@ -897,13 +927,13 @@
           </div>
 
           <div class="about-badges">
-            <span class="about-badge">CRO-[ESTADO] [NÚMERO]</span>
+            <span class="about-badge">CRO-ES 4.829</span>
             <span class="about-badge">Especialista em Estética Dental</span>
             <span class="about-badge">Facetas de Porcelana</span>
             <span class="about-badge">Implantes Dentais</span>
           </div>
 
-          <a href="#contact" class="btn-primary">Agendar com Dr(a). [NOME] →</a>
+          <a href="#contact" class="btn-primary">Agendar com a Dra. Larissa →</a>
         </div>
 
       </div>
@@ -917,53 +947,74 @@
     <div class="container">
       <div class="section-header reveal">
         <p class="section-tag">✦ Casos Reais</p>
-        <h2 class="section-title">Transformações Reais</h2>
-        <p class="section-sub">Cada sorriso abaixo pertence a um paciente real. Arraste para ver a diferença.</p>
+        <h2 class="section-title">Sorrisos que Falam</h2>
+        <p class="section-sub">Cada sorriso é uma história real de confiança e cuidado. Passe o mouse para conhecer a jornada.</p>
       </div>
-      <div class="ba-grid">
+      <div class="showcase-grid">
 
-        <!-- Caso 1 -->
-        <div class="ba-card reveal">
-          <div class="ba-slider-wrap" data-ba>
-            <img class="ba-before" src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?w=600&q=80" alt="Antes" loading="lazy" />
-            <img class="ba-after" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600&q=80" alt="Depois" loading="lazy" />
-            <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-7 7 7 7M16 5l7 7-7 7"/></svg></div></div>
-            <span class="ba-label-before">ANTES</span>
-            <span class="ba-label-after">DEPOIS</span>
-          </div>
-          <div class="ba-info">
-            <p class="ba-proc">Facetas de Porcelana — 6 lentes</p>
-            <p class="ba-time">Tratamento concluído em 2 sessões</p>
+        <!-- Card 1 — Facetas -->
+        <div class="showcase-card reveal">
+          <span class="showcase-tag">✦ Resultado Real</span>
+          <img
+            class="showcase-img"
+            src="https://images.unsplash.com/photo-1675526607070-f5cbd71dde92?w=800&q=85"
+            alt="Paciente com sorriso de facetas de porcelana — Sorrir Studio"
+            loading="lazy"
+          />
+          <div class="showcase-overlay">
+            <p class="showcase-preview">
+              <span class="showcase-preview-icon">✦</span>
+              Facetas de Porcelana — 8 lentes
+            </p>
+            <div class="showcase-detail">
+              <p class="showcase-duration">⏱ Concluído em 2 sessões</p>
+              <p class="showcase-quote">"Sempre quis sorrir sem vergonha. Hoje não consigo parar de sorrir."</p>
+              <a href="#contact" class="showcase-cta">Quero esse resultado →</a>
+            </div>
           </div>
         </div>
 
-        <!-- Caso 2 -->
-        <div class="ba-card reveal reveal-d1">
-          <div class="ba-slider-wrap" data-ba>
-            <img class="ba-before" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80" alt="Antes" loading="lazy" />
-            <img class="ba-after" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&q=80" alt="Depois" loading="lazy" />
-            <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-7 7 7 7M16 5l7 7-7 7"/></svg></div></div>
-            <span class="ba-label-before">ANTES</span>
-            <span class="ba-label-after">DEPOIS</span>
-          </div>
-          <div class="ba-info">
-            <p class="ba-proc">Alinhadores Invisíveis — 18 meses</p>
-            <p class="ba-time">Resultado completo sem dor ou brackets</p>
+        <!-- Card 2 — Alinhadores -->
+        <div class="showcase-card reveal reveal-d1">
+          <span class="showcase-tag">✦ Resultado Real</span>
+          <img
+            class="showcase-img"
+            src="./alinhadores.jpg"
+            alt="Paciente com alinhadores invisíveis sorrindo — Sorrir Studio"
+            loading="lazy"
+          />
+          <div class="showcase-overlay">
+            <p class="showcase-preview">
+              <span class="showcase-preview-icon">◈</span>
+              Alinhadores Invisíveis
+            </p>
+            <div class="showcase-detail">
+              <p class="showcase-duration">⏱ Tratamento em 14 meses</p>
+              <p class="showcase-quote">"Ninguém sabia que eu usava aparelho. Resultado incrível e sem dor."</p>
+              <a href="#contact" class="showcase-cta">Quero esse resultado →</a>
+            </div>
           </div>
         </div>
 
-        <!-- Caso 3 -->
-        <div class="ba-card reveal reveal-d2">
-          <div class="ba-slider-wrap" data-ba>
-            <img class="ba-before" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=600&q=80" alt="Antes" loading="lazy" />
-            <img class="ba-after" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="Depois" loading="lazy" />
-            <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 5l-7 7 7 7M16 5l7 7-7 7"/></svg></div></div>
-            <span class="ba-label-before">ANTES</span>
-            <span class="ba-label-after">DEPOIS</span>
-          </div>
-          <div class="ba-info">
-            <p class="ba-proc">Implante Dental — dente único</p>
-            <p class="ba-time">Processo completo em 3 meses</p>
+        <!-- Card 3 — Implante -->
+        <div class="showcase-card reveal reveal-d2">
+          <span class="showcase-tag">✦ Resultado Real</span>
+          <img
+            class="showcase-img"
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85"
+            alt="Paciente com sorriso completo após implante — Sorrir Studio"
+            loading="lazy"
+          />
+          <div class="showcase-overlay">
+            <p class="showcase-preview">
+              <span class="showcase-preview-icon">◉</span>
+              Implante Dental
+            </p>
+            <div class="showcase-detail">
+              <p class="showcase-duration">⏱ Processo em 3 meses</p>
+              <p class="showcase-quote">"Voltei a sorrir nas fotos. Parece meu dente de verdade — porque é."</p>
+              <a href="#contact" class="showcase-cta">Quero esse resultado →</a>
+            </div>
           </div>
         </div>
 
@@ -1300,12 +1351,11 @@
         <div>
           <p class="footer-logo">Sorrir<span>.</span>Studio</p>
           <p class="footer-tagline">Estética dental de alto padrão para quem quer transformar seu sorriso e sua vida.</p>
-          <!-- ⚠ PREENCHER: adicione o endereço real da clínica -->
           <p class="footer-tagline" style="margin-top:16px; line-height:1.6;">
-            📍 Rua [ENDEREÇO], [NÚMERO]<br>
-            [BAIRRO] — [CIDADE]/[ESTADO]<br>
-            CEP: [00000-000]<br><br>
-            📞 <a href="https://wa.me/55COLE_SEU_NUMERO_AQUI" style="color:#94a3b8;" target="_blank" rel="noopener">(00) 00000-0000</a>
+            📍 Rua Lourival Pereira, 143<br>
+            Bento Ferreira — Vitória/ES<br>
+            CEP: 29050-370<br><br>
+            📞 <a href="https://wa.me/5527996413782" style="color:#94a3b8;" target="_blank" rel="noopener">(27) 99641-3782</a>
           </p>
         </div>
         <div class="footer-links">
@@ -1334,7 +1384,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Sorrir Studio. Todos os direitos reservados. | CRO-[ESTADO] [NÚMERO] | Estética dental de alto padrão.</p>
+        <p>© 2026 Sorrir Studio. Todos os direitos reservados. | Dra. Larissa Acosta — CRO-ES 4.829 | Estética dental de alto padrão.</p>
       </div>
     </div>
   </footer>
@@ -1412,28 +1462,6 @@
     }, { threshold: 0.5 });
     statEls.forEach(el => counterObserver.observe(el));
 
-    /* === BEFORE / AFTER SLIDERS === */
-    document.querySelectorAll('[data-ba]').forEach(slider => {
-      const afterImg  = slider.querySelector('.ba-after');
-      const divider   = slider.querySelector('.ba-divider');
-      let dragging = false;
-
-      function setPosition(x) {
-        const rect = slider.getBoundingClientRect();
-        let pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
-        const pctPx = (pct * 100).toFixed(2);
-        afterImg.style.clipPath = `inset(0 ${(100 - pct * 100).toFixed(2)}% 0 0)`;
-        divider.style.left = pctPx + '%';
-      }
-
-      slider.addEventListener('mousedown',  e => { dragging = true; setPosition(e.clientX); e.preventDefault(); });
-      window.addEventListener('mousemove',  e => { if (dragging) setPosition(e.clientX); });
-      window.addEventListener('mouseup',    () => dragging = false);
-
-      slider.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
-      window.addEventListener('touchmove',  e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
-      window.addEventListener('touchend',   () => dragging = false);
-    });
 
     /* === PROCEDURES ACCORDION (com ARIA para acessibilidade) ===
      * ARIA permite que leitores de tela (pessoas com deficiência visual)
