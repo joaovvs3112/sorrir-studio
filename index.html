@@ -178,16 +178,10 @@
     .section-hook {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 60px 24px 0;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      max-width: 1200px;
-      margin: 0 auto;
-      white-space: nowrap;
+      gap: 0;
+      padding: 64px 0 0;
+      max-width: 100%;
+      margin: 0;
     }
     .section-hook::before,
     .section-hook::after {
@@ -195,7 +189,35 @@
       flex: 1;
       height: 1px;
       background: var(--border);
-      min-width: 40px;
+    }
+    .section-hook-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 9px 20px 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6b7a99;
+      box-shadow: 0 2px 14px rgba(26,43,74,.07);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin: 0 20px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .section-hook-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #f59e0b;
+      flex-shrink: 0;
+    }
+    .section-hook-arrow {
+      font-size: 11px;
+      color: #b0bac8;
+      margin-left: 4px;
     }
 
     /* ======================================================
@@ -285,8 +307,8 @@
     .hero-top {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: flex-end;
+      gap: 64px;
+      align-items: flex-start;
       padding-bottom: 56px;
     }
     .hero-tag {
@@ -306,14 +328,41 @@
     .hero-h1 em { font-style: normal; color: var(--accent); }
     .hero-btns { display: flex; flex-wrap: wrap; gap: 16px; }
     .hero-right {
-      display: flex; flex-direction: column; justify-content: flex-end;
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding-top: 10px;
     }
+    /* Mini proof card at top of right column */
+    .hero-proof {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 20px rgba(26,43,74,.06);
+    }
+    .hero-proof-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+    .hero-proof-body { flex: 1; }
+    .hero-proof-stars { color: #f59e0b; font-size: 13px; margin-bottom: 4px; letter-spacing: 1px; }
+    .hero-proof-text {
+      font-size: 14px; color: #1a2b4a; font-style: italic;
+      line-height: 1.5; margin-bottom: 6px;
+    }
+    .hero-proof-name { font-size: 12px; color: var(--muted); font-weight: 500; }
     .hero-sub {
-      font-size: 18px; color: var(--muted);
-      line-height: 1.7; margin-bottom: 32px;
+      font-size: 17px; color: var(--muted);
+      line-height: 1.75; margin-bottom: 28px;
     }
     .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 20px;
+      display: flex; flex-wrap: wrap; gap: 16px;
       font-size: 13px; color: var(--muted);
     }
     .hero-stats span { display: flex; align-items: center; gap: 6px; }
@@ -1233,8 +1282,9 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-btns { flex-direction: column; }
       .hero-stats { flex-direction: column; gap: 10px; }
-      .section-hook { white-space: normal; text-align: center; }
       .section-hook::before, .section-hook::after { display: none; }
+      .section-hook-badge { margin: 0; }
+      .hero-proof { display: none; }
       .btn-primary, .btn-outline { width: 100%; justify-content: center; }
     }
   </style>
@@ -1288,8 +1338,16 @@
             <a href="#transformations" class="btn-outline">Ver transformações reais ↓</a>
           </div>
         </div>
-        <!-- Right: sub + stats -->
+        <!-- Right: proof card + sub + stats -->
         <div class="hero-animate hero-right">
+          <div class="hero-proof">
+            <div class="hero-proof-avatar">M</div>
+            <div class="hero-proof-body">
+              <div class="hero-proof-stars">★★★★★</div>
+              <p class="hero-proof-text">"Mudou minha confiança completamente. Em 2 consultas meu sorriso ficou irreconhecível."</p>
+              <span class="hero-proof-name">Mariana A. — facetas de porcelana</span>
+            </div>
+          </div>
           <p class="hero-sub">73% das pessoas evitam sorrir em fotos por vergonha dos dentes. Em até 3 visitas, você pode continuar sendo uma delas — ou pode mudar isso de vez.</p>
           <div class="hero-stats">
             <span><strong>+500</strong> sorrisos transformados</span>
@@ -1309,7 +1367,7 @@
       loading="eager"
     />
   </section>
-  <p class="section-hook">Entenda o porquê</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>Entenda o porquê<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        PROBLEMA (NOVA SEÇÃO)
@@ -1343,7 +1401,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">A boa notícia? Isso tem solução — e mais rápido do que você imagina</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>A boa notícia? Isso tem solução — mais rápido do que você imagina<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        SOCIAL PROOF STRIP
@@ -1370,7 +1428,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">Quer ver como fica na prática?</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>Quer ver como fica na prática?<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        BEFORE / AFTER
@@ -1453,7 +1511,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">A especialista por trás de cada resultado</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>A especialista por trás de cada resultado<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        SOBRE O DENTISTA
@@ -1521,7 +1579,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">O que é possível fazer pelo seu sorriso?</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>O que é possível fazer pelo seu sorriso?<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        PROCEDURES — BENTO GRID
@@ -1587,7 +1645,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">Falando em investimento...</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>Falando em investimento...<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        INVESTIMENTO (NOVA SEÇÃO)
@@ -1750,7 +1808,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">Na prática, o que os pacientes dizem</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>Na prática, o que os pacientes dizem<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        TESTIMONIALS
@@ -1770,7 +1828,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook">Antes de decidir...</p>
+  <p class="section-hook"><span class="section-hook-badge"><span class="section-hook-dot"></span>Antes de decidir...<span class="section-hook-arrow">↓</span></span></p>
 
   <!-- ======================================================
        FAQ GERAL (NOVA SEÇÃO)
