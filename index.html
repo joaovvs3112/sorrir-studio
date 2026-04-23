@@ -173,17 +173,29 @@
     .reveal-d4 { transition-delay: .4s; }
 
     /* ======================================================
-       === SECTION HOOKS ===
+       === SECTION HOOKS — divider style
     ====================================================== */
     .section-hook {
-      text-align: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      opacity: 1;
-      padding: 32px 24px;
-      letter-spacing: 0.5px;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 60px 24px 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      max-width: 1200px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+    .section-hook::before,
+    .section-hook::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      min-width: 40px;
     }
 
     /* ======================================================
@@ -192,14 +204,14 @@
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       transition: background .3s, backdrop-filter .3s, box-shadow .3s;
-      padding: 20px 0;
+      padding: 18px 0;
     }
     #navbar.scrolled {
-      background: rgba(240,246,255,.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(240,246,255,.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       box-shadow: 0 1px 0 var(--border);
-      padding: 14px 0;
+      padding: 12px 0;
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
@@ -207,18 +219,27 @@
     .nav-logo {
       font-family: var(--font-headline);
       font-weight: 800; font-size: 22px;
-      color: #1a2b4a; letter-spacing: -0.5px;
+      color: #1a2b4a; letter-spacing: -0.5px; flex-shrink: 0;
     }
     .nav-logo span { color: var(--accent); }
+
+    /* pill container */
     .nav-links {
-      display: flex; gap: 32px; align-items: center;
+      display: flex; align-items: center; gap: 2px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 6px;
+      box-shadow: 0 2px 8px rgba(26,43,74,.05);
     }
+    .nav-links li { display: contents; }
     .nav-links a {
-      font-size: 14px; font-weight: 500; color: var(--muted);
-      transition: color .2s;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      padding: 8px 16px; border-radius: 100px;
+      transition: background .2s, color .2s; white-space: nowrap;
     }
-    .nav-links a:hover { color: #1a2b4a; }
-    .nav-cta { white-space: nowrap; }
+    .nav-links a:hover { background: var(--bg2); color: #1a2b4a; }
+    .nav-cta { white-space: nowrap; flex-shrink: 0; }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       cursor: pointer; padding: 4px; background: none; border: none;
@@ -255,59 +276,55 @@
        === HERO SECTION ===
     ====================================================== */
     #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 120px 0 80px;
-      background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(59,130,246,.06) 0%, transparent 70%);
+      padding: 128px 0 0;
+      background: var(--bg);
+      overflow: hidden;
     }
-    .hero-grid {
+
+    /* text row: headline left | desc + stats right */
+    .hero-top {
       display: grid;
-      grid-template-columns: 60fr 40fr;
-      gap: 60px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: flex-end;
+      padding-bottom: 56px;
     }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 700; letter-spacing: 3px;
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
       color: var(--accent); text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .hero-h1 {
       font-family: var(--font-headline);
-      font-size: clamp(42px, 6vw, 72px);
+      font-size: clamp(40px, 5.5vw, 68px);
       font-weight: 800; line-height: 1.05;
       letter-spacing: -1.5px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
     .hero-h1 em { font-style: normal; color: var(--accent); }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 16px; }
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
     .hero-sub {
       font-size: 18px; color: var(--muted);
-      max-width: 480px; margin-bottom: 40px; line-height: 1.7;
+      line-height: 1.7; margin-bottom: 32px;
     }
-    .hero-btns { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px; }
     .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 24px;
-      font-size: 14px; color: var(--muted);
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 13px; color: var(--muted);
     }
     .hero-stats span { display: flex; align-items: center; gap: 6px; }
     .hero-stats strong { color: var(--accent); }
 
-    .hero-img-wrap {
-      position: relative; border-radius: 12px; overflow: visible;
-    }
-    .hero-img-wrap img {
-      width: 100%; border-radius: 12px;
-      border: 1px solid #e8ecf2;
-      object-fit: cover; height: 560px;
-    }
-    .hero-float-tag {
-      position: absolute; bottom: -20px; left: -20px;
-      background: var(--accent-hover); color: #fff;
-      font-size: 13px; font-weight: 700;
-      padding: 12px 20px; border-radius: 8px;
-      display: flex; align-items: center; gap: 8px;
-      box-shadow: 0 8px 32px rgba(59,130,246,.35);
+    /* full-width landscape image */
+    .hero-img-full {
+      width: 100%; height: 480px;
+      object-fit: cover; object-position: center 30%;
+      border-radius: 20px 20px 0 0;
+      display: block;
     }
 
     /* Hero entrance animations */
@@ -320,7 +337,6 @@
     .hero-animate:nth-child(2) { animation-delay: .25s; }
     .hero-animate:nth-child(3) { animation-delay: .4s; }
     .hero-animate:nth-child(4) { animation-delay: .55s; }
-    .hero-animate:nth-child(5) { animation-delay: .7s; }
 
     /* ======================================================
        === PROBLEMA ===
@@ -1076,7 +1092,18 @@
     .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
     .footer-bottom {
       border-top: 1px solid #243a5e; padding-top: 24px;
-      font-size: 13px; color: #94a3b8; text-align: center;
+      font-size: 13px; color: #94a3b8;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding-right: 8px;
+    }
+    .footer-dev { white-space: nowrap; }
+    .footer-dev a {
+      color: #94a3b8; text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-dev a:hover { color: var(--accent); }
+    @media (max-width: 640px) {
+      .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
     }
 
     /* ======================================================
@@ -1193,9 +1220,8 @@
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .nav-drawer { display: flex; }
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero-img-wrap img { height: 340px; }
-      .hero-float-tag { left: 0; bottom: -16px; font-size: 12px; padding: 10px 14px; }
+      .hero-top { grid-template-columns: 1fr; gap: 36px; padding-bottom: 40px; }
+      .hero-img-full { height: 300px; border-radius: 12px 12px 0 0; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .about-img-real, .about-img-placeholder { height: 320px; }
       .about-cro-tag { right: 0; bottom: -14px; font-size: 12px; padding: 8px 14px; }
@@ -1207,6 +1233,8 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-btns { flex-direction: column; }
       .hero-stats { flex-direction: column; gap: 10px; }
+      .section-hook { white-space: normal; text-align: center; }
+      .section-hook::before, .section-hook::after { display: none; }
       .btn-primary, .btn-outline { width: 100%; justify-content: center; }
     }
   </style>
@@ -1250,17 +1278,20 @@
   ====================================================== -->
   <section id="hero">
     <div class="container">
-      <div class="hero-grid">
-        <!-- Left: Text -->
+      <div class="hero-top">
+        <!-- Left: headline + CTAs -->
         <div class="hero-left">
           <div class="hero-animate hero-tag">✦ Estética Dental de Alto Padrão</div>
           <h1 class="hero-animate hero-h1">Seu sorriso está<br><em>te travando?</em></h1>
-          <p class="hero-animate hero-sub">73% das pessoas evitam sorrir em fotos por vergonha dos dentes. Em até 3 visitas, você pode continuar sendo uma delas — ou pode mudar isso de vez.</p>
           <div class="hero-animate hero-btns">
             <a href="#contact" class="btn-primary">Quero meu novo sorriso →</a>
             <a href="#transformations" class="btn-outline">Ver transformações reais ↓</a>
           </div>
-          <div class="hero-animate hero-stats">
+        </div>
+        <!-- Right: sub + stats -->
+        <div class="hero-animate hero-right">
+          <p class="hero-sub">73% das pessoas evitam sorrir em fotos por vergonha dos dentes. Em até 3 visitas, você pode continuar sendo uma delas — ou pode mudar isso de vez.</p>
+          <div class="hero-stats">
             <span><strong>+500</strong> sorrisos transformados</span>
             <span>·</span>
             <span><strong>98%</strong> de satisfação</span>
@@ -1268,18 +1299,17 @@
             <span>Avaliação <strong>100% gratuita</strong></span>
           </div>
         </div>
-        <!-- Right: Image -->
-        <div class="hero-animate hero-img-wrap">
-          <img
-            src="./Heropic.png"
-            alt="Sorriso perfeito — paciente Sorrir Studio"
-            loading="eager"
-          />
-        </div>
       </div>
     </div>
+    <!-- imagem larga — fora do container para borda a borda -->
+    <img
+      class="hero-img-full"
+      src="./Heropic.png"
+      alt="Sorriso perfeito — paciente Sorrir Studio"
+      loading="eager"
+    />
   </section>
-  <p class="section-hook container">Por que isso acontece com tanta gente? ↓</p>
+  <p class="section-hook">Entenda o porquê</p>
 
   <!-- ======================================================
        PROBLEMA (NOVA SEÇÃO)
@@ -1287,7 +1317,7 @@
   <section id="problema">
     <div class="container">
       <div class="section-header reveal">
-        <p class="section-tag">✦ Por que isso acontece</p>
+        <p class="section-tag">✦ O problema é real</p>
         <h2 class="section-title">O sorriso afeta mais do<br>que você imagina</h2>
       </div>
       <div class="problema-grid">
@@ -1313,7 +1343,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">A boa notícia? Isso tem solução — e mais rápido do que você imagina ↓</p>
+  <p class="section-hook">A boa notícia? Isso tem solução — e mais rápido do que você imagina</p>
 
   <!-- ======================================================
        SOCIAL PROOF STRIP
@@ -1340,7 +1370,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Veja resultados reais de quem já transformou o sorriso ↓</p>
+  <p class="section-hook">Quer ver como fica na prática?</p>
 
   <!-- ======================================================
        BEFORE / AFTER
@@ -1423,7 +1453,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Quem vai cuidar do seu sorriso? ↓</p>
+  <p class="section-hook">A especialista por trás de cada resultado</p>
 
   <!-- ======================================================
        SOBRE O DENTISTA
@@ -1491,7 +1521,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Qual transformação combina com você? ↓</p>
+  <p class="section-hook">O que é possível fazer pelo seu sorriso?</p>
 
   <!-- ======================================================
        PROCEDURES — BENTO GRID
@@ -1557,7 +1587,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Mas quanto custa tudo isso? ↓</p>
+  <p class="section-hook">Falando em investimento...</p>
 
   <!-- ======================================================
        INVESTIMENTO (NOVA SEÇÃO)
@@ -1720,7 +1750,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Veja o que quem já fez está dizendo ↓</p>
+  <p class="section-hook">Na prática, o que os pacientes dizem</p>
 
   <!-- ======================================================
        TESTIMONIALS
@@ -1740,7 +1770,7 @@
       </div>
     </div>
   </section>
-  <p class="section-hook container">Ainda tem dúvidas? ↓</p>
+  <p class="section-hook">Antes de decidir...</p>
 
   <!-- ======================================================
        FAQ GERAL (NOVA SEÇÃO)
@@ -1748,7 +1778,7 @@
   <section id="faq-geral">
     <div class="container">
       <div class="section-header reveal">
-        <p class="section-tag">✦ Ainda com dúvidas?</p>
+        <p class="section-tag">✦ Tire suas dúvidas</p>
         <h2 class="section-title">A gente responde</h2>
       </div>
       <div class="faq-geral-list">
@@ -1949,6 +1979,7 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Sorrir Studio. Todos os direitos reservados. | Dra. Larissa Acosta — CRO-ES 4.829 | Estética dental de alto padrão.</p>
+        <p class="footer-dev"><a href="https://lumenpages.com.br/" target="_blank" rel="noopener">Site desenvolvido por Lumen Pages</a></p>
       </div>
     </div>
   </footer>
